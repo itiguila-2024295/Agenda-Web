@@ -13,27 +13,18 @@
 }
 
 @keyframes typingLoop {
-    /* Empieza vacío */
     0% {
         width: 0;
     }
-
-    /* Escribe */
     40% {
         width: 100%;
     }
-
-    /* Pausa con el texto completo */
     70% {
         width: 100%;
     }
-
-    /* BORRADO INSTANTÁNEO */
     80% {
         width: 100%;
     }
-
-    /* Se mantiene vacío hasta reiniciar */
     90% {
         width: 0;
     }
