@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------Login--------------------------------------------------------*/
 
-.typewriter{
+.typewriter {
     display: flex;
     justify-content: center;
 }
@@ -18,27 +18,35 @@
     0% {
         width: 0;
     }
+
     40% {
         width: 100%;
     }
+
     70% {
         width: 100%;
     }
+
     80% {
         width: 100%;
     }
+
     90% {
         width: 0;
     }
+
     100% {
         width: 0;
     }
 }
 
 @keyframes blink {
-    from, to {
+
+    from,
+    to {
         border-color: transparent;
     }
+
     50% {
         border-color: black;
     }
@@ -49,5 +57,83 @@
         font-size: 4rem;
     }
 }
+
 /*-----------------------------------------------------------------------------Agenda--------------------------------------------------------*/
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+    animation: slideIn 0.3s ease;
+}
+
+.modal {
+    display: none !important;
+}
+
+.modal.active {
+    display: flex !important;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    animation: scaleIn 0.3s ease;
+}
+
+.dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu.active {
+    display: block;
+    animation: slideDown 0.2s ease;
+}
 

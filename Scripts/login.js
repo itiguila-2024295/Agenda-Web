@@ -22,7 +22,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
         localStorage.setItem("isLoggedIn", "true");
 
         // Redirigir a la página principal
-        window.location.href = "agenda.html";
+        window.location.href = "Pages/Agenda.html";
 
     } else {
         // Login fallido
