@@ -1,48 +1,46 @@
-document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+    const loginForm = document.getElementById('loginForm');
 
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
-    const errorMessage = document.getElementById("errorMessage");
-    const loginBox = document.getElementById("loginBox");
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-    // Validación simple
-    if (email && password) {
-        // Login exitoso
-        errorMessage.classList.add("hidden");
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+            const errorMessage = document.getElementById("errorMessage");
+            
 
-        // Extraer información del usuario
-        const userName = email.split("@")[0];
-        const initials = userName.substring(0, 2).toUpperCase();
+            if (email && password) {
+                const userName = email.split("@")[0];
+                const initials = userName.substring(0, 2).toUpperCase();
 
-        // Guardar datos en localStorage para pasarlos a la otra página
-        localStorage.setItem("userEmail", email);
-        localStorage.setItem("userName", userName);
-        localStorage.setItem("userInitials", initials);
-        localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("userEmail", email);
+                localStorage.setItem("userName", userName);
+                localStorage.setItem("userInitials", initials);
+                localStorage.setItem("isLoggedIn", "true");
 
-        // Redirigir a la página principal
-        window.location.href = "Pages/Agenda.html";
-
-    } else {
-        // Login fallido
-        errorMessage.classList.remove("hidden");
+                window.location.href = "Pages/Agenda.html";
+            } else {
+                errorMessage.classList.remove("hidden");
+                console.log("Email o contraseña incorrectos");
+            }
+        });
     }
+
+    window.seePassword = function (event) {
+        const passwordInput = document.getElementById("loginPassword");
+        const toggleIcon = event && event.target ? event.target : null;
+
+        if (!passwordInput) return;
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            if (toggleIcon) toggleIcon.textContent = '👁️‍🗨️';
+        } else {
+            passwordInput.type = 'password';
+            if (toggleIcon) toggleIcon.textContent = '👁️';
+        }
+    };
 });
-
-function seePassword() {
-    const passwordInput = document.getElementById("loginPassword");
-    const toggleIcon = event.target;
-
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        toggleIcon.textContent = '👁️‍🗨️';
-    } else {
-        passwordInput.type = 'password';
-        toggleIcon.textContent = '👁️';
-        
-        
-    }
-}
 
 

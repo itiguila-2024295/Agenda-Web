@@ -5,19 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var dropdownAvatar = document.getElementById('dropdownAvatar');
     var dropdownName = document.getElementById('dropdownName');
     var dropdownEmail = document.getElementById('dropdownEmail');
-
-    function populateUserInfo() {
-        var initials = localStorage.getItem('userInitials') || 'US';
-        var name = localStorage.getItem('userName') || 'Usuario';
-        var email = localStorage.getItem('userEmail') || 'usuario@email.com';
-
-        if (userAvatar) userAvatar.textContent = initials;
-        if (dropdownAvatar) dropdownAvatar.textContent = initials;
-        if (dropdownName) dropdownName.textContent = name;
-        if (dropdownEmail) dropdownEmail.textContent = email;
-    }
-
-    populateUserInfo();
+    var userName = document.getElementById('userName');
+    var userEmail = document.getElementById('userEmail');
 
     if (userButton && userDropdown) {
         userButton.addEventListener('click', function (e) {
