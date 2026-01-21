@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // ------------------------------------------------------------- Variables ----------------------------------------------------
     var userButton = document.getElementById('userButton');
     var userDropdown = document.getElementById('userDropdown');
     var userAvatar = document.getElementById('userAvatar');
@@ -14,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contactForm');
     const successModal = document.getElementById('modalExito');
     const successOkBtn = document.getElementById('botonModal');
+
+//----------------------------------------------------------------- Dropdown de usuario ----------------------------------------------------
 
     if (userButton && userDropdown) {
         userButton.addEventListener('click', function (e) {
@@ -48,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Camabio de vistas
+    // ------------------------------------------------------------ Cambio de vistas ----------------------------------------------------
 
     function changeView(viewName) {
         
@@ -69,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    // Abrir y cerrar el Modal de éxito
+    // ------------------------------------------------------------ Abrir y cerrar el Modal de éxito ----------------------------------------------------
 
     function openSuccessModal() {
         if (successModal) {
