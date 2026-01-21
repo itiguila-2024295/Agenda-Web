@@ -1,3 +1,6 @@
+/**/
+
+
 /*-----------------------------------------------------------------------------Login--------------------------------------------------------*/
 
 .typewriter {
@@ -137,3 +140,65 @@
     animation: slideDown 0.2s ease;
 }
 
+.nav-item.active {
+    background-color: #8b7355;
+    color: white;
+    animation: slideIn 0.5s ease;
+}
+.nav-item {
+    background-color: transparent;
+    color: #4b5563;
+}
+.nav-item:hover {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+.nav-item.active:hover {
+    background-color: #72563F;
+    color: white;
+}
+
+/* --- Sticky bottom navbar for Agenda page --- */
+.bottom-nav {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    z-index: 50;
+    width: calc(100% - 40px); /* account for body p-5 (20px) on each side */
+    max-width: 64rem; /* match max-w-4xl container */
+}
+
+/* Add bottom padding so content isn't hidden behind fixed nav */
+body.pad-for-bottom-nav {
+    padding-bottom: 100px; /* ~nav height + gap */
+}
+
+header.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
