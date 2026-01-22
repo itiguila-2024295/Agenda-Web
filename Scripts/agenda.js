@@ -125,6 +125,8 @@ document.addEventListener('DOMContentLoaded', function () {
             contactNotes.textContent = notes;
             contactModal.classList.add('active');
             contactModal.setAttribute('aria-hidden', 'false');
+            const initials = name.split(' ').map(word => word.charAt(0)).join('').toUpperCase();
+            contactModalAvatar.textContent = initials;
         });    
     });
 

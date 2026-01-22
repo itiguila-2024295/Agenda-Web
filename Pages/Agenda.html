@@ -28,14 +28,12 @@
                     <div class="bg-[#8b7355] text-white py-4 px-6 text-2xl font-semibold">A</div>
                     <div class="py-5 px-6 border-b border-gray-200 cursor-pointer transition-colors hover:bg-gray-200 contact-item "
                         data-name="Angel Siliezar" data-phone="+502 1234 5678" data-email="angel@email.com"
-                        data-notes="Compañero de trabajo"
-                        id="contactName">
+                        data-notes="Compañero de trabajo" id="contactName">
                         Angel Siliezar
                     </div>
                     <div class="py-5 px-6 border-b border-gray-200 cursor-pointer transition-colors hover:bg-gray-200 contact-item"
                         data-name="Andre Rodriguez" data-phone="+502 8765 4321" data-email="andre@email.com"
-                        data-notes="Cliente importante"
-                        id="contactName">
+                        data-notes="Cliente importante" id="contactName">
                         Andre Rodriguez
                     </div>
                 </div>
@@ -43,8 +41,7 @@
                     <div class="bg-[#8b7355] text-white py-4 px-6 text-2xl font-semibold">M</div>
                     <div class="py-5 px-6 border-b border-gray-200 cursor-pointer transition-colors hover:bg-gray-200 contact-item"
                         data-name="Marlon Perez" data-phone="+502 5555 6666" data-email="marlon@email.com"
-                        data-notes="La cabra de Programación"
-                        id="contactName">
+                        data-notes="La cabra de Programación" id="contactName">
                         Marlon Perez
                     </div>
                 </div>
@@ -52,14 +49,12 @@
                     <div class="bg-[#8b7355] text-white py-4 px-6 text-2xl font-semibold">S</div>
                     <div class="py-5 px-6 border-b border-gray-200 cursor-pointer transition-colors hover:bg-gray-200 contact-item"
                         data-name="Stev Paiz" data-phone="+502 7777 8888" data-email="stev@email.com"
-                        data-notes="Proveedor"
-                        id="contactName">
+                        data-notes="Proveedor" id="contactName">
                         Stev Paiz
                     </div>
                     <div class="py-5 px-6 cursor-pointer transition-colors hover:bg-gray-200 contact-item"
                         data-name="Samuel Lino" data-phone="+502 9999 0000" data-email="samuel@email.com"
-                        data-notes="Socio de negocios"
-                        id="contactName">
+                        data-notes="Socio de negocios" id="contactName">
                         Samuel Lino
                     </div>
                 </div>
@@ -196,13 +191,20 @@
             </div>
         </div>
     </div>
-        <!-------------------------------------------------------------- Modal Contactos ------------------------------------------------->
+    <!-------------------------------------------------------------- Modal Contactos ------------------------------------------------->
     <div>
         <div id="contactModal" class="modal fixed inset-0 bg-black/50 z-[60] items-center justify-center p-4"
             role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" aria-hidden="true">
             <div
                 class="modal-content bg-white rounded-2xl p-6 max-w-md w-full text-center shadow-xl border border-gray-200">
                 <h3 id="contactModalTitle" class="text-2xl font-semibold text-gray-800 mb-4">Detalles del Contacto</h3>
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 rounded-full bg-[#8b7355] text-white flex items-center justify-center 
+                            font-semibold text-lg" id="contactModalAvatar">
+                    US
+                </div>
+                </div>
+                
                 <div class="text-left space-y-4">
                     <p><strong>Nombre:</strong> <span id="modalContactName"></span></p>
                     <p><strong>Teléfono:</strong> <span id="modalContactPhone"></span></p>
