@@ -16,6 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const successModal = document.getElementById('modalExito');
     const successOkBtn = document.getElementById('botonModal');
 
+    const contactItems = document.querySelectorAll('.contact-item');
+    const contactModal = document.getElementById('contactModal');
+    const contactName = document.getElementById('modalContactName');
+    const contactPhone = document.getElementById('modalContactPhone');
+    const contactEmail = document.getElementById('modalContactEmail');
+    const contactNotes = document.getElementById('modalContactNotes');
+    const contactCloseBtn = document.getElementById('closeContactModal');
+
 //----------------------------------------------------------------- Dropdown de usuario ----------------------------------------------------
 
     if (userButton && userDropdown) {
@@ -101,5 +109,33 @@ document.addEventListener('DOMContentLoaded', function () {
             closeSuccessModal();
         });
     }
+
+    // --------------------------------------------------------- Modal Datos Contacto ----------------------------------------------------
+    
+    contactItems.forEach(item => {
+        item.addEventListener('click', () => {
+            document.body.style.overflow = 'hidden';
+            const name = item.getAttribute('data-name');
+            const phone = item.getAttribute('data-phone');
+            const email = item.getAttribute('data-email');
+            const notes = item.getAttribute('data-notes');
+            contactName.textContent = name;
+            contactPhone.textContent = phone;
+            contactEmail.textContent = email;
+            contactNotes.textContent = notes;
+            contactModal.classList.add('active');
+            contactModal.setAttribute('aria-hidden', 'false');
+        });    
+    });
+
+    if (contactCloseBtn) {
+        contactCloseBtn.addEventListener('click', () => {
+            contactModal.classList.remove('active');
+            contactModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+
 });
 
