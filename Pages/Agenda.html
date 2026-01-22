@@ -41,7 +41,7 @@
                     <div class="bg-[#8b7355] text-white py-4 px-6 text-2xl font-semibold">M</div>
                     <div class="py-5 px-6 border-b border-gray-200 cursor-pointer transition-colors hover:bg-gray-200 contact-item"
                         data-name="Marlon Perez" data-phone="+502 5555 6666" data-email="marlon@email.com"
-                        data-notes="Amigo del colegio">
+                        data-notes="La cabra de Programación">
                         Marlon Perez
                     </div>
                 </div>
@@ -188,6 +188,26 @@
             <div class="flex items-center justify-center gap-3">
                 <button id="botonModal"
                     class="px-4 py-2 rounded-full bg-[#8b7355] text-white hover:bg-[#6d5a44] transition-colors">Aceptar</button>
+            </div>
+        </div>
+    </div>
+        <!-------------------------------------------------------------- Modal Contactos ------------------------------------------------->
+    <div>
+        <div id="contactModal" class="modal fixed inset-0 bg-black/50 z-[60] items-center justify-center p-4"
+            role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" aria-hidden="true">
+            <div
+                class="modal-content bg-white rounded-2xl p-6 max-w-md w-full text-center shadow-xl border border-gray-200">
+                <h3 id="contactModalTitle" class="text-2xl font-semibold text-gray-800 mb-4">Detalles del Contacto</h3>
+                <div class="text-left space-y-4">
+                    <p><strong>Nombre:</strong> <span id="modalContactName"></span></p>
+                    <p><strong>Teléfono:</strong> <span id="modalContactPhone"></span></p>
+                    <p><strong>Email:</strong> <span id="modalContactEmail"></span></p>
+                    <p><strong>Notas:</strong> <span id="modalContactNotes"></span></p>
+                </div>
+                <div class="mt-6 flex items-center justify-center gap-3">
+                    <button id="closeContactModal"
+                        class="px-4 py-2 rounded-full bg-[#8b7355] text-white hover:bg-[#6d5a44] transition-colors">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
