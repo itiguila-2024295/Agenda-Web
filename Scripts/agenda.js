@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactNotes = document.getElementById('modalContactNotes');
     const contactCloseBtn = document.getElementById('closeContactModal');
 
-//----------------------------------------------------------------- Dropdown de usuario ----------------------------------------------------
+    //----------------------------------------------------------------- Dropdown de usuario ----------------------------------------------------
 
     if (userButton && userDropdown) {
         userButton.addEventListener('click', function (e) {
@@ -58,20 +58,40 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = '../index.html';
         });
     }
+    // ------------------------------------------------------------ Obtener y mostrar info de usuario ----------------------------------------------------
+    function getUserInfo() {
+        var initials = localStorage.getItem('userInitials') || 'US';
+        var name = localStorage.getItem('userName') || 'Usuario';
+        var email = localStorage.getItem('userEmail') || 'usuario@email.com';
+        var shownEmail = email;
+
+
+
+        if (userAvatar) userAvatar.textContent = initials;
+        if (dropdownAvatar) dropdownAvatar.textContent = initials;
+        if (dropdownName) dropdownName.textContent = name;
+        if (dropdownEmail) dropdownEmail.textContent = email;
+        if (userButton) userButton.textContent = initials;
+        if (userName) userName.textContent = name;
+        if (userEmail) userEmail.textContent = shownEmail;
+    }
+
+    getUserInfo();
+
 
     // ------------------------------------------------------------ Cambio de vistas ----------------------------------------------------
 
     function changeView(viewName) {
-        
+
         views.forEach(view => view.classList.remove('active'));
         document.getElementById(`${viewName}-view`)?.classList.add('active');
 
-        
+
         navItems.forEach(btn => btn.classList.remove('active'));
         document.querySelector(`[data-view="${viewName}"]`)?.classList.add('active');
     }
 
-    
+
     navItems.forEach(btn => {
         btn.addEventListener('click', () => {
             const view = btn.dataset.view;
@@ -111,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --------------------------------------------------------- Modal Datos Contacto ----------------------------------------------------
-    
+
     contactItems.forEach(item => {
         item.addEventListener('click', () => {
             document.body.style.overflow = 'hidden';
@@ -127,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
             contactModal.setAttribute('aria-hidden', 'false');
             const initials = name.split(' ').map(word => word.charAt(0)).join('').toUpperCase();
             contactModalAvatar.textContent = initials;
-        });    
+        });
     });
 
     if (contactCloseBtn) {
