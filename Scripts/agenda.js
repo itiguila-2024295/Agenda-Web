@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactEmail = document.getElementById('modalContactEmail');
     const contactNotes = document.getElementById('modalContactNotes');
     const contactCloseBtn = document.getElementById('closeContactModal');
+    const contactModalAvatar = document.getElementById('contactModalAvatar');
+
+    const todoListBtn = document.getElementById('addTodoBtn');
+    const todoModal = document.getElementById('toDoModal');
+    const closeTodoModalBtn = document.getElementById('closeTodoModal');
 
     //----------------------------------------------------------------- Dropdown de usuario ----------------------------------------------------
 
@@ -158,6 +163,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // --------------------------------------------------------- Modal ToDo List ----------------------------------------------------
+
+    todoListBtn.addEventListener('click', () => {
+        todoModal.classList.add('active');
+        todoModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    });
+    closeTodoModalBtn.addEventListener('click', () => {
+        todoModal.classList.remove('active');
+        todoModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = 'auto';
+    });
 
 });
 

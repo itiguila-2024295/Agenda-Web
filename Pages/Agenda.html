@@ -107,117 +107,168 @@
                 <div class="bg-[#8b7355] text-white py-4 px-6 text-2xl font-semibold">M</div>
                 <div class="py-5 px-6 border-b border-gray-200 cursor-pointer transition-colors hover:bg-gray-200 contact-item"
                     data-name="Marlon Perez" data-phone="+502 5555 6666" data-email="marlon@email.com"
-                    data-notes="Amigo del colegio">
+                    data-notes="La cabra de Programación">
                     <span class="text-2xl">⭐</span>
                     Marlon Perez
                 </div>
             </div>
-        </div>
-        <!-------------------------------------------------------- Nav inferior ---------------------------------------------------------->
-        <div class="bg-[#f5f5f0] rounded-full p-3 flex items-center justify-between shadow-md bottom-nav"
-            role="navigation" aria-label="Main navigation">
-            <button data-view="contactos"
-                class="nav-item active flex-1 py-3 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
-                <span class="text-lg">👥</span>
-                <span class="hidden sm:inline">Contactos</span>
-            </button>
-            <button data-view="agregar"
-                class="nav-item flex-1 py-3 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
-                <span class="text-lg">➕</span>
-                <span class="hidden sm:inline">Agregar</span>
-            </button>
-            <button data-view="favoritos"
-                class="nav-item flex-1 py-3 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
-                <span class="text-lg">⭐</span>
-                <span class="hidden sm:inline">Favoritos</span>
-            </button>
-            <button data-view="pendientes"
-                class="nav-item flex-1 py-3 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
-                <span class="text-lg">📋</span>
-                <span class="hidden sm:inline">Pendientes</span>
-            </button>
-            <!-- Botón de usuario con dropdown -->
-            <div class="relative ml-2">
-                <button id="userButton" class="w-12 h-12 rounded-full bg-white border-2 border-[#8b7355] cursor-pointer flex 
+
+            <!-------------------------------------------------------- Vista: Pendientes ------------------------------------------------->
+            <div id="pendientes-view" class="view">
+                <div class="btn-addList flex items-center justify-end mt-6 mb-4 sticky">
+                    <button id="addTodoBtn"
+                        class="px-4 py-2 rounded-full bg-[#8b7355] text-white hover:bg-[#6d5a44] transition-colors flex items-center gap-2">
+                        <span class="text-lg">➕</span>
+                        <span>Agregar</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-------------------------------------------------------- Nav inferior ---------------------------------------------------------->
+            <div class="bg-[#f5f5f0] rounded-full p-3 flex items-center justify-between shadow-md bottom-nav"
+                role="navigation" aria-label="Main navigation">
+                <button data-view="contactos"
+                    class="nav-item active flex-1 py-3 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
+                    <span class="text-lg">👥</span>
+                    <span class="hidden sm:inline">Contactos</span>
+                </button>
+                <button data-view="agregar"
+                    class="nav-item flex-1 py-3 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
+                    <span class="text-lg">➕</span>
+                    <span class="hidden sm:inline">Agregar</span>
+                </button>
+                <button data-view="favoritos"
+                    class="nav-item flex-1 py-3 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
+                    <span class="text-lg">⭐</span>
+                    <span class="hidden sm:inline">Favoritos</span>
+                </button>
+                <button data-view="pendientes"
+                    class="nav-item flex-1 py-3 px-4 rounded-full flex items-center justify-center gap-2 transition-all">
+                    <span class="text-lg">📋</span>
+                    <span class="hidden sm:inline">Pendientes</span>
+                </button>
+                <!-- Botón de usuario con dropdown -->
+                <div class="relative ml-2">
+                    <button id="userButton" class="w-12 h-12 rounded-full bg-white border-2 border-[#8b7355] cursor-pointer flex 
                     items-center justify-center font-semibold text-[#8b7355] transition-all duration-300 
                     hover:bg-[#8b7355] hover:text-white hover:scale-105">
-                    IT
-                </button>
-                <!-------------------------------------------- Menú desplegable del usuario --------------------------------------------->
-                <div id="userDropdown"
-                    class="dropdown-menu absolute right-0 bottom-16 bg-white rounded-2xl shadow-xl p-2 w-64 border border-gray-200">
-                    <div class="p-4 border-b border-gray-200">
-                        <div class="flex items-center gap-3 mb-2">
-                            <div class="w-12 h-12 rounded-full bg-[#8b7355] text-white flex items-center justify-center 
+                        IT
+                    </button>
+                    <!-------------------------------------------- Menú desplegable del usuario --------------------------------------------->
+                    <div id="userDropdown"
+                        class="dropdown-menu absolute right-0 bottom-16 bg-white rounded-2xl shadow-xl p-2 w-64 border border-gray-200">
+                        <div class="p-4 border-b border-gray-200">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-12 h-12 rounded-full bg-[#8b7355] text-white flex items-center justify-center 
                             font-semibold text-lg" id="dropdownAvatar">
-                                IT
-                            </div>
-                            <div class="flex-1">
-                                <p class="font-semibold text-gray-800" id="dropdownName">Usuario</p>
-                                <p class="text-sm text-gray-600" id="dropdownEmail">usuario@email.com</p>
+                                    IT
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-semibold text-gray-800" id="dropdownName">Usuario</p>
+                                    <p class="text-sm text-gray-600" id="dropdownEmail">usuario@email.com</p>
+                                </div>
                             </div>
                         </div>
+                        <button id="profileBtn"
+                            class="w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors flex items-center gap-3">
+                            <span class="text-xl">👤</span>
+                            <span class="text-gray-700">Mi Perfil</span>
+                        </button>
+                        <button id="settingsBtn"
+                            class="w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors flex items-center gap-3">
+                            <span class="text-xl">⚙️</span>
+                            <span class="text-gray-700">Configuración</span>
+                        </button>
+                        <div class="border-t border-gray-200 my-2"></div>
+                        <button id="logoutBtn"
+                            class="w-full text-left px-4 py-3 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-3 text-red-600">
+                            <span class="text-xl">🚪</span>
+                            <span class="font-medium">Cerrar Sesión</span>
+                        </button>
                     </div>
-                    <button id="profileBtn"
-                        class="w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors flex items-center gap-3">
-                        <span class="text-xl">👤</span>
-                        <span class="text-gray-700">Mi Perfil</span>
-                    </button>
-                    <button id="settingsBtn"
-                        class="w-full text-left px-4 py-3 hover:bg-gray-100 rounded-lg transition-colors flex items-center gap-3">
-                        <span class="text-xl">⚙️</span>
-                        <span class="text-gray-700">Configuración</span>
-                    </button>
-                    <div class="border-t border-gray-200 my-2"></div>
-                    <button id="logoutBtn"
-                        class="w-full text-left px-4 py-3 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-3 text-red-600">
-                        <span class="text-xl">🚪</span>
-                        <span class="font-medium">Cerrar Sesión</span>
-                    </button>
                 </div>
             </div>
         </div>
-    </div>
-    <!-------------------------------------------------------- Modal de agregar contacto ------------------------------------------------->
-    <div id="modalExito" class="modal fixed inset-0 bg-black/50 z-[60] items-center justify-center p-4" role="dialog"
-        aria-modal="true" aria-labelledby="modalTitulo" aria-hidden="true">
-        <div
-            class="modal-content bg-white rounded-2xl p-6 max-w-sm w-full text-center shadow-xl border border-gray-200">
-            <h3 id="modalTitulo" class="text-xl font-semibold text-gray-800 mb-1">Contacto agregado</h3>
-            <p id="modalMensaje" class="text-gray-600 mb-5">El usuario se agregó con éxito.</p>
-            <div class="flex items-center justify-center gap-3">
-                <button id="botonModal"
-                    class="px-4 py-2 rounded-full bg-[#8b7355] text-white hover:bg-[#6d5a44] transition-colors">Aceptar</button>
-            </div>
-        </div>
-    </div>
-    <!-------------------------------------------------------------- Modal Contactos ------------------------------------------------->
-    <div>
-        <div id="contactModal" class="modal fixed inset-0 bg-black/50 z-[60] items-center justify-center p-4"
-            role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" aria-hidden="true">
+        <!-------------------------------------------------------- Modal de agregar contacto ------------------------------------------------->
+        <div id="modalExito" class="modal fixed inset-0 bg-black/50 z-[60] items-center justify-center p-4"
+            role="dialog" aria-modal="true" aria-labelledby="modalTitulo" aria-hidden="true">
             <div
-                class="modal-content bg-white rounded-2xl p-6 max-w-md w-full text-center shadow-xl border border-gray-200">
-                <h3 id="contactModalTitle" class="text-2xl font-semibold text-gray-800 mb-4">Detalles del Contacto</h3>
-                <div class="flex items-center justify-center mb-4">
-                    <div class="w-12 h-12 rounded-full bg-[#8b7355] text-white flex items-center justify-center 
-                            font-semibold text-lg" id="contactModalAvatar">
-                    US
-                </div>
-                </div>
-                
-                <div class="text-left space-y-4">
-                    <p><strong>Nombre:</strong> <span id="modalContactName"></span></p>
-                    <p><strong>Teléfono:</strong> <span id="modalContactPhone"></span></p>
-                    <p><strong>Email:</strong> <span id="modalContactEmail"></span></p>
-                    <p><strong>Notas:</strong> <span id="modalContactNotes"></span></p>
-                </div>
-                <div class="mt-6 flex items-center justify-center gap-3">
-                    <button id="closeContactModal"
-                        class="px-4 py-2 rounded-full bg-[#8b7355] text-white hover:bg-[#6d5a44] transition-colors">Cerrar</button>
+                class="modal-content bg-white rounded-2xl p-6 max-w-sm w-full text-center shadow-xl border border-gray-200">
+                <h3 id="modalTitulo" class="text-xl font-semibold text-gray-800 mb-1">Contacto agregado</h3>
+                <p id="modalMensaje" class="text-gray-600 mb-5">El usuario se agregó con éxito.</p>
+                <div class="flex items-center justify-center gap-3">
+                    <button id="botonModal"
+                        class="px-4 py-2 rounded-full bg-[#8b7355] text-white hover:bg-[#6d5a44] transition-colors">Aceptar</button>
                 </div>
             </div>
         </div>
-    </div>
+        <!-------------------------------------------------------------- Modal Contactos ------------------------------------------------->
+        <div>
+            <div id="contactModal" class="modal fixed inset-0 bg-black/50 z-[60] items-center justify-center p-4"
+                role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" aria-hidden="true">
+                <div
+                    class="modal-content bg-white rounded-2xl p-6 max-w-md w-full text-center shadow-xl border border-gray-200">
+                    <h3 id="contactModalTitle" class="text-2xl font-semibold text-gray-800 mb-4">Detalles del
+                        Contacto
+                    </h3>
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-[#8b7355] text-white flex items-center justify-center 
+                            font-semibold text-lg" id="contactModalAvatar">
+                            US
+                        </div>
+                    </div>
+
+                    <div class="text-left space-y-4">
+                        <p><strong>Nombre:</strong> <span id="modalContactName"></span></p>
+                        <p><strong>Teléfono:</strong> <span id="modalContactPhone"></span></p>
+                        <p><strong>Email:</strong> <span id="modalContactEmail"></span></p>
+                        <p><strong>Notas:</strong> <span id="modalContactNotes"></span></p>
+                    </div>
+                    <div class="mt-6 flex items-center justify-center gap-3">
+                        <button id="closeContactModal"
+                            class="px-4 py-2 rounded-full bg-[#8b7355] text-white hover:bg-[#6d5a44] transition-colors">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---------------------------------------------------------------------- Modal CRUD ToDo List ------------------------------------------------->
+        <div>
+            <div id="toDoModal" class="modal fixed inset-0 bg-black/50 z-[60] items-center justify-center p-4"
+                role="dialog" aria-modal="true" aria-labelledby="todoModalTitle" aria-hidden="true">
+                <div
+                    class="modal-content bg-white rounded-2xl p-6 max-w-md w-full text-center shadow-xl border border-gray-200">
+                    <h3 id="todoModalTitle" class="text-2xl font-semibold text-gray-800 mb-4">Agregar Tarea
+                        Pendiente
+                    </h3>
+                    <form id="todoForm" class="text-left space-y-4">
+                        <div>
+                            <label class="block mb-2 font-medium text-gray-700">Título de la tarea</label>
+                            <input type="text" id="todoTitle" required class="w-full p-3 border-2 border-gray-300 rounded-xl text-base transition-colors outline-none 
+                                focus:border-[#8b7355]">
+                        </div>
+                        <div>
+                            <label class="block mb-2 font-medium text-gray-700">Fecha y hora</label>
+                            <input type="datetime-local" id="todoDatetime" required class="w-full p-3 border-2 border-gray-300 rounded-xl text-base transition-colors outline-none 
+                                focus:border-[#8b7355]">
+                        </div>
+                        <div>
+                            <label class="block mb-2 font-medium text-gray-700">Prioridad</label>
+                            <select id="priorityInput" required class="w-full p-3 border-2 border-gray-300 rounded-xl text-base transition-colors outline-none 
+                                focus:border-[#8b7355]">
+                                <option value="baja">Baja</option>
+                                <option value="media">Media</option>
+                                <option value="alta">Alta</option>
+                            </select>
+                            <div class="flex items-center justify-center gap-3 mt-10">
+                                <button type="submit"
+                                    class="px-4 py-2 rounded-full bg-[#8b7355] text-white hover:bg-[#6d5a44] transition-colors">Guardar</button>
+                                <button type="button" id="closeTodoModal"
+                                    class="px-4 py-2 rounded-full bg-gray-300 text-gray-700 hover:bg-gray-400 transition-colors">Cancelar</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
