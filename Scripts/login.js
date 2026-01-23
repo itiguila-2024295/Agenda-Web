@@ -29,18 +29,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.seePassword = function (event) {
         const passwordInput = document.getElementById("loginPassword");
-        const toggleIcon = event && event.target ? event.target : null;
+        const toggleIcon = event?.target;
 
         if (!passwordInput) return;
 
         if (passwordInput.type === "password") {
             passwordInput.type = "text";
-            if (toggleIcon) toggleIcon.textContent = '👁️‍🗨️';
+            if (toggleIcon) 
+                toggleIcon.classList.replace('ph-eye', 'ph-eye-slash');
         } else {
             passwordInput.type = 'password';
-            if (toggleIcon) toggleIcon.textContent = '👁️';
+            if (toggleIcon) toggleIcon.classList.add('ph-eye');
+            if (toggleIcon) toggleIcon.classList.remove('ph-eye-slash');
         }
     };
+
 });
 
 

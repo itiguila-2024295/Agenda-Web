@@ -184,17 +184,17 @@ header.sticky {
     padding-bottom: 10px;
 }
 
-.btn-addList.sticky {
+#pendientes-view .btn-addList {
+    position: static;
+}
+
+#pendientes-view #addTodoBtn {
     position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 100px;
-    z-index: 55;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: calc(100% - 40px);
-    max-width: 64rem;
-    border-bottom: none;
+    right: 28px;
+    bottom: 110px;
+    z-index: 49;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    border-radius: 50px;
 }
 
 ::-webkit-scrollbar {

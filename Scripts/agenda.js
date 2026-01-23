@@ -25,9 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactCloseBtn = document.getElementById('closeContactModal');
     const contactModalAvatar = document.getElementById('contactModalAvatar');
 
-    const todoListBtn = document.getElementById('addTodoBtn');
     const todoModal = document.getElementById('toDoModal');
     const closeTodoModalBtn = document.getElementById('closeTodoModal');
+    const addTodoBtn = document.getElementById('addTodoBtn');
+    const todoForm = document.getElementById('todoForm');
+    const pendientesView = document.getElementById('pendientes-view');
 
     //----------------------------------------------------------------- Dropdown de usuario ----------------------------------------------------
 
@@ -69,8 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
         var name = localStorage.getItem('userName') || 'Usuario';
         var email = localStorage.getItem('userEmail') || 'usuario@email.com';
         var shownEmail = email;
-
-
 
         if (userAvatar) userAvatar.textContent = initials;
         if (dropdownAvatar) dropdownAvatar.textContent = initials;
@@ -165,16 +165,154 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --------------------------------------------------------- Modal ToDo List ----------------------------------------------------
 
-    todoListBtn.addEventListener('click', () => {
+    let tareas = [];
+    let editandoId = null;
+
+
+    addTodoBtn.addEventListener('click', () => {
+        editandoId = null;
+        document.getElementById('todoModalTitle').textContent = 'Agregar Tarea';
+        todoForm.reset();
         todoModal.classList.add('active');
         todoModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
     });
+
     closeTodoModalBtn.addEventListener('click', () => {
         todoModal.classList.remove('active');
         todoModal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = 'auto';
+        todoForm.reset();
+        editandoId = null;
     });
 
+
+    todoForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const titulo = document.getElementById('todoTitle').value;
+        const fecha = document.getElementById('todoDatetime').value;
+        const prioridad = document.getElementById('priorityInput').value;
+
+        // If para ver si se esta editando o creando nueva tarea
+        if (editandoId) {
+
+            const tarea = tareas.find(t => t.id === editandoId);
+            tarea.titulo = titulo;
+            tarea.fecha = fecha;
+            tarea.prioridad = prioridad;
+        } else {
+
+            tareas.push({
+                id: Date.now(),
+                titulo: titulo,
+                fecha: fecha,
+                prioridad: prioridad,
+                completada: false
+            });
+        }
+        // Guardar las tareas en el navegador
+        localStorage.setItem('tareas', JSON.stringify(tareas));
+        mostrarTareas();
+        todoModal.classList.remove('active');
+        todoModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = 'auto';
+        todoForm.reset();
+    });
+
+    // Metodo para mostrar tareas
+    function mostrarTareas() {
+        let html = '<div class="space-y-3 mt-4">';
+
+        if (tareas.length === 0) {
+            html += '<p class="text-center text-gray-500 py-8">No hay tareas</p>';
+        } else {
+            tareas.forEach(tarea => {
+
+                //Ordenar tareas por prioridad
+                tareas.sort((a, b) => {
+                    const prioridades = { baja: 1, media: 2, alta: 3 };
+                    return prioridades[b.prioridad] - prioridades[a.prioridad];
+
+                });
+
+                //Colores dependiendo de la prioridad
+                const colorPrioridad = {
+                    baja: 'bg-green-100 border-green-400',
+                    media: 'bg-yellow-100 border-yellow-400',
+                    alta: 'bg-red-100 border-red-400'
+                };
+
+                // Se genera el html para cada tarea creada
+                html += `
+                <div class="bg-white rounded-lg p-4 shadow border-l-4 ${colorPrioridad[tarea.prioridad]}">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3 flex-1">
+                            <div>
+                                <h4 class="font-semibold">${tarea.titulo}</h4>
+                                <p class="text-sm text-gray-600">📅 ${tarea.fecha} - ${tarea.prioridad}</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="editar(${tarea.id})" 
+                                    class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                <i class="ph ph-pencil text-1xl"></i>
+                            </button>
+                            <button onclick="eliminar(${tarea.id})" 
+                                    class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                <i class="ph ph-trash text-1xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+
+
+            });
+        }
+
+        html += '</div>';
+
+        // Mostrar las tareas en el contenedor
+        const container = document.getElementById('tareas-container');
+        if (container) {
+            container.innerHTML = html;
+        }
+    }
+    // Editar Tarea
+    function editar(id) {
+        const tarea = tareas.find(t => t.id === id);
+        editandoId = id;
+
+        document.getElementById('todoModalTitle').textContent = 'Editar Tarea';
+        document.getElementById('todoTitle').value = tarea.titulo;
+        document.getElementById('todoDatetime').value = tarea.fecha;
+        document.getElementById('priorityInput').value = tarea.prioridad;
+
+        todoModal.classList.add('active');
+    }
+
+    //Eliminar Tarea
+    function eliminar(id) {
+        if (confirm('¿Eliminar esta tarea?')) {
+            tareas = tareas.filter(t => t.id !== id);
+            localStorage.setItem('tareas', JSON.stringify(tareas));
+            mostrarTareas();
+        }
+    }
+
+    // Cargar tareas guardadas al iniciar
+    window.addEventListener('DOMContentLoaded', () => {
+        const guardadas = localStorage.getItem('tareas');
+        if (guardadas) {
+            tareas = JSON.parse(guardadas);
+            mostrarTareas();
+        }
+    });
+
+    
+    // Funciones globales para poder editar y eliminar 
+    window.editar = editar;
+    window.eliminar = eliminar;
 });
 
